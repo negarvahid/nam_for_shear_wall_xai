@@ -1,0 +1,161 @@
+
+    <html>
+    <head>
+        <title>Model Interpretability Comparison</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 40px; }
+            .plot-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; }
+            .plot { text-align: center; }
+            .description { margin: 20px 0; }
+            h2 { color: #2c3e50; }
+            .feature-section { margin: 10px 0; }
+            .model-comparison { display: flex; justify-content: space-around; }
+            .model-box { 
+                flex: 1; 
+                margin: 10px; 
+                padding: 15px; 
+                border: 1px solid #ddd;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Model Interpretability Comparison Report</h1>
+        
+        <div class="plot-section">
+            <h2>1. Overall Feature Importance Comparison</h2>
+            <div class="plot">
+                <img src="importance_comparison.png" alt="Feature Importance Comparison">
+            </div>
+            <div class="description">
+                <p>This plot compares how each model ranks feature importance. Key observations:</p>
+                <ul>
+                    <li>NAM top 5: ['hw', 'AR', 'lw', 'ρbl', 'tw']</li>
+                    <li>RF top 5: ['lw', 'b0', 'tw', 'hw', 'db']</li>
+                    <li>XGB top 5: ['lw', 'b0', 'hw', 'fysh', 'P/(Agf′c)']</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="plot-section">
+            <h2>2. Individual Feature Effects</h2>
+            <p>For key features, we compare how each model interprets their effects:</p>
+    
+            <div class="feature-section">
+                <h3>Feature: M/Vlw</h3>
+                <div class="plot">
+                    <img src="effect_comparison_M_Vlw.png" alt="Effect Comparison for M/Vlw">
+                </div>
+                <div class="description">
+                    <p>Direction agreement: Yes</p>
+                    <p>Effect direction:</p>
+                    <ul>
+                        <li>NAM: positive</li>
+                        <li>RF: positive</li>
+                        <li>XGB: positive</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Feature: hw</h3>
+                <div class="plot">
+                    <img src="effect_comparison_hw.png" alt="Effect Comparison for hw">
+                </div>
+                <div class="description">
+                    <p>Direction agreement: Yes</p>
+                    <p>Effect direction:</p>
+                    <ul>
+                        <li>NAM: positive</li>
+                        <li>RF: positive</li>
+                        <li>XGB: positive</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Feature: ρsh</h3>
+                <div class="plot">
+                    <img src="effect_comparison_ρsh.png" alt="Effect Comparison for ρsh">
+                </div>
+                <div class="description">
+                    <p>Direction agreement: No</p>
+                    <p>Effect direction:</p>
+                    <ul>
+                        <li>NAM: negative</li>
+                        <li>RF: positive</li>
+                        <li>XGB: positive</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Feature: lw</h3>
+                <div class="plot">
+                    <img src="effect_comparison_lw.png" alt="Effect Comparison for lw">
+                </div>
+                <div class="description">
+                    <p>Direction agreement: Yes</p>
+                    <p>Effect direction:</p>
+                    <ul>
+                        <li>NAM: positive</li>
+                        <li>RF: positive</li>
+                        <li>XGB: positive</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="feature-section">
+                <h3>Feature: b0</h3>
+                <div class="plot">
+                    <img src="effect_comparison_b0.png" alt="Effect Comparison for b0">
+                </div>
+                <div class="description">
+                    <p>Direction agreement: Yes</p>
+                    <p>Effect direction:</p>
+                    <ul>
+                        <li>NAM: positive</li>
+                        <li>RF: positive</li>
+                        <li>XGB: positive</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="plot-section">
+            <h2>3. Model Comparison Summary</h2>
+            <div class="model-comparison">
+                <div class="model-box">
+                    <h3>NAM</h3>
+                    <ul>
+                        <li>Direct interpretation of feature effects</li>
+                        <li>Smooth, continuous functions</li>
+                        <li>No interaction effects</li>
+                        <li>Best for initial understanding</li>
+                    </ul>
+                </div>
+                <div class="model-box">
+                    <h3>SHAP (RF & XGB)</h3>
+                    <ul>
+                        <li>Captures feature interactions</li>
+                        <li>Local and global interpretability</li>
+                        <li>More complex relationships</li>
+                        <li>Best for detailed analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="plot-section">
+            <h2>4. Engineering Recommendations</h2>
+            <ul>
+                <li>Use NAM for initial design decisions and understanding individual parameter effects</li>
+                <li>Use SHAP for understanding complex interactions and verifying NAM findings</li>
+                <li>Pay special attention to features where models disagree</li>
+                <li>Consider both approaches for comprehensive understanding</li>
+            </ul>
+        </div>
+    </body>
+    </html>
+    
